@@ -1,0 +1,2481 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpaceNews - Portal Berita Antariksa</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+  <style>
+    html, body, *, *:before, *:after {
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100% !important;
+    }
+    body {
+      background: #181c2a;
+      background: -webkit-linear-gradient(120deg, #181c2a 60%, #2c2e4a 100%);
+      background: -moz-linear-gradient(120deg, #181c2a 60%, #2c2e4a 100%);
+      background: -o-linear-gradient(120deg, #181c2a 60%, #2c2e4a 100%);
+      background: linear-gradient(120deg, #181c2a 60%, #2c2e4a 100%);
+      color: #fff;
+      font-family: 'Poppins', Arial, sans-serif;
+      min-height: 100vh;
+      position: relative;
+    }
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      z-index: 0;
+      pointer-events: none;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      opacity: 0.45;
+      -webkit-filter: blur(32px);
+      filter: blur(32px);
+    }
+    body::before {
+      width: 600px;
+      height: 600px;
+      top: -180px;
+      right: -220px;
+      background: #7f53ac;
+      background: -webkit-radial-gradient(circle at 60% 40%, #7f53ac 0%, #23284a 80%);
+      background: -moz-radial-gradient(circle at 60% 40%, #7f53ac 0%, #23284a 80%);
+      background: -o-radial-gradient(circle at 60% 40%, #7f53ac 0%, #23284a 80%);
+      background: radial-gradient(circle at 60% 40%, #7f53ac 0%, #23284a 80%);
+    }
+    body::after {
+      width: 420px;
+      height: 420px;
+      left: -160px;
+      bottom: -120px;
+      background: #647dee;
+      background: -webkit-radial-gradient(circle at 40% 60%, #647dee 0%, #23284a 80%);
+      background: -moz-radial-gradient(circle at 40% 60%, #647dee 0%, #23284a 80%);
+      background: -o-radial-gradient(circle at 40% 60%, #647dee 0%, #23284a 80%);
+      background: radial-gradient(circle at 40% 60%, #647dee 0%, #23284a 80%);
+    }
+    h1, h2, h3, h4, h5, h6, .heading-alpha {
+      font-family: 'Bebas Neue', 'Poppins', Arial, sans-serif;
+      letter-spacing: 1px;
+      font-weight: 400;
+    }
+    .navbar {
+      background: rgba(10, 20, 40, 0.95);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .hero {
+      background: none;
+      /* background diatur oleh carousel */
+      padding: 0;
+      margin: 0;
+    }
+    .hero .container {
+      max-width: 100%;
+      padding: 0;
+    }
+    #heroCarousel, #heroCarousel .carousel-inner, #heroCarousel .carousel-item {
+      width: 100%;
+      min-height: 400px;
+      max-width: 100%;
+    }
+    @media (min-width: 768px) {
+      #heroCarousel, #heroCarousel .carousel-inner, #heroCarousel .carousel-item {
+        min-height: 550px;
+      }
+    }
+    .carousel-item-bg {
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    @media (min-width: 768px) {
+      .carousel-item-bg {
+        min-height: 550px;
+      }
+    }
+    .carousel-caption-bg {
+      background: rgba(10,20,40,0.18);
+      padding: 2rem 2.2rem 1.7rem 2.2rem;
+      border-radius: 16px;
+      max-width: 600px;
+      margin: 0 0 2.7rem 2.7rem;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      text-align: left;
+      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.12);
+    }
+    @media (max-width: 767px) {
+      .carousel-caption-bg {
+        max-width: 98vw;
+        margin: 0 0 1.1rem 1.1rem;
+        padding: 1rem 1.1rem 0.8rem 1.1rem;
+      }
+    }
+    .hero-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+    .carousel .lead {
+      font-size: 0.95rem;
+    }
+    .carousel .btn.btn-primary.btn-lg {
+      font-size: 0.9rem;
+      padding: 0.4rem 1.1rem;
+    }
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #fff2;
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+    .footer {
+      background: #101522;
+      color: #fff;
+      padding: 2rem 0 1rem 0;
+    }
+    .footer a { color: #fff; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .social-icon {
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      color: #fff;
+    }
+    .card {
+      background: #1a2233;
+      color: #fff;
+      border: none;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      border-radius: 8px;
+      -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      -moz-box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .card-img-top {
+      height: 180px;
+      /* Fallback untuk object-fit */
+      width: 100%;
+      /* Untuk browser lama, gambar akan terpotong */
+      object-fit: cover;
+      /* Untuk IE, gunakan background-image jika perlu */
+    }
+    .faq-item {
+      background: #1a2233;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      padding: 1rem;
+    }
+    /* NAVBAR MODERN */
+    .navbar-custom {
+      background: #181c2a;
+      border-radius: 0;
+      margin: 0;
+      max-width: 100vw;
+      box-shadow: none;
+      padding: 0.3rem 1.2rem;
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 0.98rem;
+      transition: all 0.3s;
+      z-index: 1002;
+    }
+    .navbar-custom.floating {
+      background: rgba(20, 24, 50, 0.85);
+      border-radius: 2.5rem;
+      margin: 1.2rem auto 2.2rem auto;
+      max-width: 1200px;
+      box-shadow: 0 4px 24px 0 rgba(80, 80, 180, 0.13);
+      padding: 0.5rem 2.2rem;
+      position: fixed;
+      left: 0; right: 0; top: 0;
+      z-index: 1002;
+    }
+    .navbar-custom .navbar-brand {
+      font-family: 'Bebas Neue', 'Poppins', Arial, sans-serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: #fff;
+      /* Make navbar brand non-clickable */
+      cursor: default !important;
+      pointer-events: none !important;
+      text-decoration: none !important;
+    }
+    .navbar-custom .nav-link {
+      position: relative;
+      color: #fff;
+      font-weight: 400;
+      margin: 0 0.5rem;
+      border-radius: 1.2rem;
+      font-size: 0.98rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .navbar-custom .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -4px; height: 3px;
+      background: #B8043B;
+      border-radius: 2px;
+      opacity: 0;
+      transform: scaleX(0);
+      transition: all 0.3s cubic-bezier(.4,2,.6,1);
+    }
+    .navbar-custom .nav-link.active {
+      background: none !important;
+      color: #fff !important;
+    }
+    .navbar-custom .nav-link:hover {
+      background: linear-gradient(90deg, #7f53ac 0%, #647dee 100%);
+      color: #fff !important;
+    }
+    .navbar-custom .btn-gradient {
+      background: linear-gradient(90deg, #7f53ac 0%, #647dee 100%);
+      color: #fff;
+      border: none;
+      border-radius: 1.5rem;
+      padding: 0.35rem 1.1rem;
+      font-weight: 600;
+      margin-left: 0.7rem;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 8px 0 rgba(127,83,172,0.13);
+      transition: background 0.2s;
+    }
+    
+    /* Fix navbar button centering on mobile */
+    @media (max-width: 991px) {
+      .navbar-custom .navbar-nav {
+        text-align: center !important;
+        width: 100% !important;
+      }
+      
+      .navbar-custom .btn-gradient {
+        margin: 0.5rem auto !important;
+        display: block !important;
+        width: fit-content !important;
+      }
+    }
+    .navbar-custom .btn-gradient:hover {
+      background: linear-gradient(90deg, #647dee 0%, #7f53ac 100%);
+      color: #fff;
+    }
+    /* HERO MODERN */
+    .hero-modern {
+      min-height: 420px;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 0;
+      margin-bottom: 0;
+      box-shadow: none;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: stretch;
+      background: none;
+      padding: 0;
+    }
+    .hero-modern .container,
+    .hero-modern .container-fluid {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+    .hero-modern .hero-bg-img {
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      max-height: 100vh;
+      object-fit: cover;
+      z-index: 1;
+      -webkit-filter: brightness(0.7) saturate(1.1);
+      filter: brightness(0.7) saturate(1.1);
+    }
+    
+    /* Ensure carousel container has proper dimensions */
+    #heroCarousel, #heroCarousel .carousel-inner {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+    }
+    @media (min-width: 992px) {
+      .hero-modern { min-height: 600px; }
+      .hero-modern .hero-bg-img { min-height: 600px; }
+    }
+    .hero-modern .hero-overlay {
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: -webkit-linear-gradient(120deg, #181c2a 60%, #2c2e4a 100%);
+      background: -moz-linear-gradient(120deg, #181c2a 60%, #2c2e4a 100%);
+      background: -o-linear-gradient(120deg, #181c2a 60%, #2c2e4a 100%);
+      background: linear-gradient(120deg, #181c2a 60%, #2c2e4a 100%);
+      opacity: 0.7;
+      z-index: 2;
+    }
+    .hero-modern .hero-content {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      width: 100%;
+      padding: 2.2rem 1.5rem 2.2rem 3.2rem;
+      max-width: 600px;
+    }
+    .hero-modern .hero-title {
+      font-family: 'Bebas Neue', 'Poppins', Arial, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 0.7rem;
+      line-height: 1.1;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #0002;
+    }
+    .hero-modern .hero-desc {
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 0.98rem;
+      color: #e0e0ff;
+      margin-bottom: 1.1rem;
+      font-weight: 400;
+      text-shadow: 0 2px 8px #0002;
+    }
+    .hero-modern .btn-gradient {
+      font-size: 0.95rem;
+      padding: 0.4rem 1.2rem;
+      margin-right: 0.7rem;
+      background: linear-gradient(90deg, #a259f7 0%, #7f53ac 100%);
+      color: #fff !important;
+      border: none;
+      box-shadow: 0 2px 8px 0 rgba(127,83,172,0.18);
+    }
+    .hero-modern .btn-outline-light {
+      font-size: 0.95rem;
+      padding: 0.4rem 1.2rem;
+      border-radius: 1.2rem;
+    }
+    @media (max-width: 991px) {
+      .hero-modern .hero-content { padding: 1.2rem 0.7rem; max-width: 100%; }
+      .hero-modern .hero-title { font-size: 1.3rem; }
+    }
+    
+    @media (max-width: 767px) {
+      .news-title, .kategori-title, .about-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .d-flex.align-items-center.mb-3 {
+        margin-bottom: 1.5rem !important;
+      }
+      
+      .d-flex.align-items-center.mb-2 {
+        margin-bottom: 1rem !important;
+      }
+    }
+    @media (max-width: 600px) {
+      .navbar-custom { 
+        padding: 0.5rem 1rem; 
+        background: rgba(20, 24, 50, 0.95) !important;
+      }
+      
+      .navbar-custom .navbar-brand {
+        font-size: 1.1rem;
+      }
+      
+      .hero-modern { border-radius: 0; }
+      .hero-modern .hero-content { 
+        padding: 1rem; 
+        max-width: 100%;
+      }
+      .hero-modern .hero-title { 
+        font-size: 1.2rem; 
+        line-height: 1.3;
+      }
+      
+      .hero-modern .hero-desc {
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+      
+      .carousel-caption-bg {
+        max-width: 95vw;
+        margin: 0 0 1rem 1rem;
+        padding: 1rem;
+      }
+    }
+    /* Carousel indicators modern */
+    .carousel-indicators {
+      position: absolute !important;
+      right: 2.2rem !important;
+      bottom: 2.2rem !important;
+      left: auto !important;
+      margin: 0 !important;
+      text-align: right !important;
+      width: auto !important;
+      display: block !important;
+      background: none !important;
+      z-index: 10;
+    }
+    .carousel-indicators [data-bs-target] {
+      display: inline-block !important;
+      float: none !important;
+    }
+    .carousel-indicators [data-bs-target] {
+      width: 32px;
+      height: 4px;
+      border-radius: 2px;
+      background: #fff4;
+      opacity: 1;
+      transition: background 0.2s;
+      border: none;
+    }
+    .carousel-indicators .active {
+      background: linear-gradient(90deg, #a259f7 0%, #7f53ac 100%);
+      box-shadow: 0 2px 8px 0 rgba(127,83,172,0.18);
+    }
+    .about-modern {
+      background: none;
+      border-radius: 0;
+      margin-bottom: 2.5rem;
+      box-shadow: none;
+      overflow: visible;
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      padding: 0;
+    }
+    .about-fullwidth { border-radius: 0 !important; box-shadow: none !important; }
+    
+    /* Memastikan section about tidak memiliki scroll */
+    #section2 {
+      overflow: visible !important;
+      height: auto !important;
+    }
+    
+    #section2 .row {
+      overflow: visible !important;
+      height: auto !important;
+    }
+    
+    .about-title {
+      font-family: 'Bebas Neue', 'Poppins', Arial, sans-serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    .about-desc {
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 1rem;
+      color: #e0e0ff;
+      margin-bottom: 0.5rem;
+    }
+    .about-img-grid {
+      width: 100%;
+      height: auto;
+      min-height: 200px;
+      overflow: visible;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 180px);
+      gap: 1rem;
+      margin-right: 1.5rem;
+    }
+    .about-img-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.75rem;
+      transition: transform 0.3s ease;
+    }
+    .about-img-grid img:hover {
+      transform: scale(1.05);
+    }
+    @media (max-width: 991px) {
+      .about-modern { border-radius: 1.2rem; }
+      .about-title { font-size: 1.5rem; }
+      .about-img-grid { 
+        grid-template-rows: repeat(2, 120px);
+        gap: 0.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .about-img-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 100px);
+        gap: 0.5rem;
+      }
+    }
+    .news-modern {
+      background: none;
+      border-radius: 0;
+      margin-bottom: 2.5rem;
+      box-shadow: none;
+      overflow: visible;
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      padding: 0;
+    }
+    .news-title {
+      font-family: 'Bebas Neue', 'Poppins', Arial, sans-serif;
+      font-size: 2.1rem;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    .news-card {
+      background: rgba(30,36,60,0.95);
+      border-radius: 1.3rem;
+      box-shadow: 0 2px 16px 0 rgba(80,80,180,0.10);
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      min-height: 160px;
+      border: none;
+      transition: box-shadow 0.3s, background 0.3s, transform 0.3s;
+    }
+    .news-card:hover, .news-card:focus-within {
+      background: linear-gradient(90deg, #7f53ac 0%, #23284a 100%);
+      box-shadow: 0 8px 32px 0 #a259f7aa;
+      transform: scale(1.025);
+    }
+    .news-card-img {
+      width: 160px;
+      min-width: 120px;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 1.3rem 0 0 1.3rem;
+      background: #222244;
+    }
+    .news-card-body {
+      flex: 1 1 0;
+      padding: 1.1rem 1.2rem 1.1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .news-card-title {
+      font-family: 'Bebas Neue', 'Poppins', Arial, sans-serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 0.3rem;
+      line-height: 1.1;
+    }
+    .news-card-desc {
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 0.97rem;
+      color: #e0e0ff;
+      margin-bottom: 0.7rem;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    .news-card-date {
+      font-size: 0.85rem;
+      color: #bdbdf7;
+      margin-bottom: 0.4rem;
+    }
+    .news-card-link {
+      font-size: 0.95rem;
+      padding: 0.35rem 1.1rem;
+      border-radius: 1.2rem;
+      background: linear-gradient(90deg, #a259f7 0%, #7f53ac 100%);
+      color: #fff !important;
+      border: none;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: auto;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px 0 rgba(127,83,172,0.13);
+    }
+    .news-card-link:hover {
+      background: linear-gradient(90deg, #7f53ac 0%, #a259f7 100%);
+      color: #fff;
+      box-shadow: 0 4px 16px 0 rgba(127,83,172,0.18);
+    }
+    @media (max-width: 991px) {
+      .news-card { flex-direction: column; min-height: 0; }
+      .news-card-img { width: 100%; min-width: 0; height: 180px; border-radius: 1.3rem 1.3rem 0 0; }
+      .news-card-body { padding: 1rem 1.1rem; }
+    }
+    .kategori-modern {
+      background: none;
+      border-radius: 0;
+      margin-bottom: 2.5rem;
+      box-shadow: none;
+      overflow: visible;
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      padding: 0;
+    }
+    .kategori-title {
+      font-family: 'Bebas Neue', 'Poppins', Arial, sans-serif;
+      font-size: 2.1rem;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    .kategori-pill {
+      border-radius: 2rem;
+      background: #3a3551 !important; /* warna solid ungu tua/abu gelap */
+      color: #bdbdf7 !important;
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 0.98rem;
+      font-weight: 500;
+      padding: 0.45rem 1.3rem;
+      border: none;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px 0 rgba(80,80,180,0.08);
+    }
+    .kategori-pill.active, .kategori-pill:hover {
+      background: #7f53ac !important; /* fallback solid */
+      background: -webkit-linear-gradient(left, #7f53ac 0%, #23243a 100%) !important;
+      background: -moz-linear-gradient(left, #7f53ac 0%, #23243a 100%) !important;
+      background: -o-linear-gradient(left, #7f53ac 0%, #23243a 100%) !important;
+      background: linear-gradient(90deg, #7f53ac 0%, #23243a 100%) !important;
+      color: #fff !important;
+      box-shadow: 0 4px 16px 0 rgba(127,83,172,0.13);
+    }
+    @media (max-width: 991px) {
+      .kategori-title { font-size: 1.3rem; }
+    }
+    
+    @media (max-width: 767px) {
+      #kategori-buttons {
+        gap: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+      
+      .kategori-pill {
+        font-size: 0.85rem;
+        padding: 0.4rem 1rem;
+        white-space: nowrap;
+      }
+    }
+    /* Section wrapper modern */
+    
+    .section-bg-alt {
+      background: #23284a;
+      border-radius: 0;
+      box-shadow: none;
+      margin-bottom: 0;
+      padding: 2.5rem 0 2.5rem 0;
+      position: relative;
+      z-index: 1;
+      transition: background 0.3s;
+    }
+    /* Grid 3 kolom responsif untuk kategori berita */
+    #kategori-list .news-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 320px;
+      margin-bottom: 0;
+    }
+    #kategori-list .news-card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 1.3rem 1.3rem 0 0;
+    }
+    @media (max-width: 991px) {
+      #kategori-list .col-lg-4 {
+        display: block !important;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        min-width: 0 !important;
+      }
+      .news-card, .news-card-img {
+        border-radius: 1rem;
+        width: 100%;
+      }
+      .news-card-img {
+        height: 160px;
+        object-fit: cover;
+      }
+    }
+    @media (max-width: 767px) {
+      #berita-list .col-lg-4,
+      #kategori-list .col-lg-4 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+      }
+      
+      .news-card {
+        flex-direction: column;
+        min-height: 0;
+        border-radius: 1rem;
+        margin-bottom: 1rem;
+      }
+      
+      .news-card-img {
+        width: 100%;
+        height: 180px;
+        border-radius: 1rem 1rem 0 0;
+        object-fit: cover;
+      }
+      
+      .news-card-body {
+        padding: 1rem;
+        flex: 1;
+      }
+      
+      .news-card-title {
+        font-size: 1.1rem;
+        line-height: 1.3;
+        margin-bottom: 0.5rem;
+      }
+      
+      .news-card-desc {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 0.8rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      
+      .news-card-date {
+        font-size: 0.8rem;
+        margin-bottom: 0.8rem;
+      }
+      
+      .news-card-link {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        text-align: center;
+        display: block;
+        width: 100%;
+      }
+      
+      .section-bg-alt, .section-bg {
+        padding: 2rem 1rem;
+      }
+      
+      .container-fluid {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+    }
+    /* Grid 3 kolom responsif untuk artikel populer */
+    #populer-list .news-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 320px;
+      margin-bottom: 0;
+    }
+    #populer-list .news-card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 1.3rem 1.3rem 0 0;
+    }
+    @media (max-width: 991px) {
+      #populer-list .col-lg-4 { flex: 0 0 100%; max-width: 100%; }
+      #populer-list .news-card-img { height: 160px; }
+    }
+    /* Artikel populer: list vertikal, 1 kolom, scrollable jika lebih dari 5 */
+    .populer-list-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      padding-right: 0;
+    }
+    .populer-list-vertical .news-card {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      min-height: 110px;
+      width: 100%;
+    }
+    .populer-list-vertical .news-card-img {
+      width: 90px;
+      min-width: 70px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 1.3rem 0 0 1.3rem;
+      background: #222244;
+    }
+    .populer-list-vertical .news-card-body {
+      flex: 1 1 0;
+      padding: 0.7rem 1rem 0.7rem 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    @media (max-width: 991px) {
+      .populer-list-vertical .news-card { flex-direction: column; min-height: 0; }
+      .populer-list-vertical .news-card-img { width: 100%; min-width: 0; height: 120px; border-radius: 1.3rem 1.3rem 0 0; }
+      .populer-list-vertical .news-card-body { padding: 0.7rem 1rem; }
+    }
+    /* Artikel Populer: grid utama + list */
+    .populer-grid-utama {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    .populer-grid-utama .populer-main-col {
+      flex: 0 0 60%;
+      max-width: 60%;
+      min-width: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: stretch;
+    }
+    .populer-grid-utama .populer-side-col {
+      flex: 0 0 40%;
+      max-width: 40%;
+      min-width: 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      justify-content: flex-start;
+    }
+    .populer-main-card {
+      background: rgba(30,36,60,0.95);
+      border-radius: 1.3rem;
+      box-shadow: 0 2px 16px 0 rgba(80,80,180,0.10);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      margin-bottom: 0;
+      transition: box-shadow 0.3s, background 0.3s, transform 0.3s;
+      /* Fix for older browsers */
+      min-height: 0;
+      flex: 1 1 auto;
+    }
+    .populer-main-card:hover, .populer-main-card:focus-within {
+      background: linear-gradient(90deg, #7f53ac 0%, #23284a 100%);
+      box-shadow: 0 8px 32px 0 #a259f7aa;
+      transform: scale(1.025);
+    }
+    .populer-main-card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 1.3rem 1.3rem 0 0;
+    }
+    .populer-main-card-body {
+      padding: 1.1rem 1.2rem 1.1rem 1.2rem;
+    }
+    .populer-main-card-title {
+      font-family: 'Bebas Neue', 'Poppins', Arial, sans-serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 0.3rem;
+      line-height: 1.1;
+    }
+    .populer-main-card-date {
+      font-size: 0.85rem;
+      color: #bdbdf7;
+      margin-bottom: 0.4rem;
+    }
+    .populer-main-card-desc {
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 0.97rem;
+      color: #e0e0ff;
+      margin-bottom: 0.7rem;
+      font-weight: 400;
+      line-height: 1.5;
+      /* Fix text truncation for older browsers */
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      -ms-hyphens: auto;
+      /* Ensure text doesn't overflow */
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+    .populer-side-card {
+      background: rgba(30,36,60,0.95);
+      border-radius: 1.3rem;
+      box-shadow: 0 2px 16px 0 rgba(80,80,180,0.10);
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      min-height: 80px;
+      width: 100%;
+      transition: box-shadow 0.3s, background 0.3s, transform 0.3s;
+    }
+    .populer-side-card:hover, .populer-side-card:focus-within {
+      background: linear-gradient(90deg, #7f53ac 0%, #23284a 100%);
+      box-shadow: 0 8px 32px 0 #a259f7aa;
+      transform: scale(1.025);
+    }
+    .populer-side-card-img {
+      width: 70px;
+      min-width: 60px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 1.3rem 0 0 1.3rem;
+      background: #222244;
+    }
+    .populer-side-card-body {
+      flex: 1 1 0;
+      padding: 0.7rem 1rem 0.7rem 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .populer-side-card-title {
+      font-family: 'Bebas Neue', 'Poppins', Arial, sans-serif;
+      font-size: 1.01rem;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 0.2rem;
+      line-height: 1.1;
+      /* Fix text truncation for older browsers */
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      -ms-hyphens: auto;
+      /* Ensure text doesn't overflow */
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .populer-side-card-date {
+      font-size: 0.8rem;
+      color: #bdbdf7;
+      margin-bottom: 0.2rem;
+    }
+    @media (max-width: 991px) {
+      .populer-grid-utama { flex-direction: column; }
+      .populer-grid-utama .populer-main-col, .populer-grid-utama .populer-side-col { max-width: 100%; flex: 0 0 100%; }
+      .populer-main-card-img { height: 160px; }
+      .populer-side-card { flex-direction: row; }
+      .populer-side-card-img { width: 60px; height: 60px; }
+    }
+    
+    @media (max-width: 767px) {
+      .modern-faq .accordion-button {
+        font-size: 0.95rem;
+        padding: 1rem;
+      }
+      
+      .modern-faq .accordion-body {
+        font-size: 0.9rem;
+        padding: 1rem;
+      }
+      
+      .faq-title {
+        font-size: 1.5rem;
+      }
+      
+      .faq-icon-main {
+        font-size: 2rem;
+        padding: 0.2em 0.3em;
+      }
+    }
+    .modern-faq .accordion-item {
+      background: #23284a;
+      border: none;
+      border-radius: 1.3rem;
+      box-shadow: 0 2px 16px 0 rgba(80,80,180,0.10);
+      box-shadow: none;
+      transition: none;
+    }
+    .modern-faq .accordion-item:hover,
+    .modern-faq .accordion-item.open {
+      background: linear-gradient(90deg, #7f53ac 0%, #23284a 100%);
+      box-shadow: 0 0 32px 12px #a259f7, 0 0 0 6px #a259f766;
+      transform: scale(1.025);
+      z-index: 2;
+      position: relative;
+      transition: none;
+    }
+    .modern-faq .accordion-button {
+      background: none;
+      color: #fff;
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      border-radius: 1.3rem;
+      box-shadow: none;
+      outline: none;
+      transition: background 0.2s;
+    }
+    .modern-faq .accordion-button:not(.collapsed) {
+      background: linear-gradient(90deg, #23284a 0%, #181c2a 100%);
+      color: #fff;
+    }
+    .modern-faq .accordion-body {
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 0.97rem;
+      color: #e0e0ff;
+      background: none;
+      border-radius: 0 0 1.3rem 1.3rem;
+    }
+    .faq-q {
+      font-family: 'Bebas Neue', 'Poppins', Arial, sans-serif;
+      font-size: 1.3rem;
+      color: #a259f7;
+      font-weight: 700;
+      margin-right: 0.5rem;
+    }
+    .faq-header {
+      margin-bottom: 2.2rem;
+      overflow: visible !important;
+    }
+    .faq-header .d-flex {
+      overflow: visible !important;
+    }
+    .faq-title {
+      font-family: 'Bebas Neue', 'Poppins', Arial, sans-serif;
+      font-size: 2.1rem;
+      color: #fff;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+    .faq-icon-main {
+      font-size: 2.5rem;
+      color: #ffd600;
+      background: #23284a;
+      border-radius: 50%;
+      box-shadow: 0 0 32px 8px #a259f7, 0 0 0 6px #a259f766;
+      padding: 0.3em 0.45em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.1em;
+      position: relative;
+      z-index: 1;
+      margin-top: 1.7rem;
+    }
+    .faq-line {
+      flex: 1 1 0;
+      height: 3px;
+      background: linear-gradient(90deg, #a259f7 0%, #7f53ac 100%);
+      border-radius: 2px;
+      opacity: 0.5;
+      margin-top: 1.7rem;
+      max-width: 120px;
+    }
+    .faq-q-icon {
+      font-size: 1.3rem;
+      color: #a259f7;
+      margin-right: 0.7rem;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.2s;
+    }
+    .modern-faq .accordion-item.show, .modern-faq .accordion-item.open {
+      background: linear-gradient(90deg, #7f53ac 0%, #23284a 100%);
+      box-shadow: 0 0 32px 12px #a259f7, 0 0 0 6px #a259f766;
+      transform: scale(1.025);
+      z-index: 2;
+      position: relative;
+    }
+    .modern-faq .accordion-button {
+      background: none;
+      color: #fff;
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      border-radius: 1.3rem;
+      box-shadow: none;
+      outline: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .modern-faq .accordion-button:not(.collapsed) {
+      background: none;
+      color: #ffd600;
+    }
+    .modern-faq .accordion-button:not(.collapsed) .faq-q-icon {
+      color: #ffd600;
+    }
+    .modern-faq .accordion-body {
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 0.97rem;
+      color: #e0e0ff;
+      background: none;
+      border-radius: 0 0 1.3rem 1.3rem;
+    }
+    .pagination-gradient .page-link {
+      background: none;
+      color: #fff;
+      border: 2px solid #a259f7;
+      margin: 0 2px;
+      border-radius: 1.2rem !important;
+      font-weight: 500;
+      transition: background 0.2s, color 0.2s, border 0.2s;
+      box-shadow: none;
+    }
+    .pagination-gradient .page-item.active .page-link {
+      background: linear-gradient(90deg, #7f53ac 0%, #a259f7 100%);
+      color: #fff;
+      border: 2px solid #a259f7;
+      box-shadow: 0 4px 16px 0 rgba(127,83,172,0.18);
+    }
+    .pagination-gradient .page-link:focus, .pagination-gradient .page-link:hover {
+      background: #23284a;
+      color: #a259f7;
+      border: 2px solid #a259f7;
+    }
+    .pagination-gradient .page-item.disabled .page-link {
+      background: #23284a;
+      color: #bdbdf7;
+      opacity: 0.6;
+      border: 2px solid #23284a;
+    }
+    .contact-card {
+      background: #23284a;
+      border-radius: 1.3rem;
+      box-shadow: 0 2px 16px 0 rgba(80,80,180,0.10);
+      color: #fff;
+      transition: box-shadow 0.3s, background 0.3s, transform 0.3s;
+    }
+    .contact-card:hover, .contact-card:focus-within {
+      background: linear-gradient(90deg, #7f53ac 0%, #23284a 100%);
+      box-shadow: 0 8px 32px 0 #a259f7aa;
+      transform: scale(1.025);
+    }
+    .contact-input {
+      background: #1a1e2e;
+      border: 1.5px solid #7f53ac;
+      color: #fff;
+      border-radius: 0.8rem;
+      font-size: 1rem;
+      font-family: 'Poppins', Arial, sans-serif;
+      transition: border 0.2s, box-shadow 0.2s;
+    }
+    .contact-input:focus {
+      border: 1.5px solid #a259f7;
+      box-shadow: 0 0 0 2px #a259f7aa;
+      background: #23284a;
+      color: #fff;
+    }
+    .contact-btn {
+      background: linear-gradient(90deg, #a259f7 0%, #7f53ac 100%);
+      color: #fff;
+      border: none;
+      border-radius: 1.2rem;
+      font-weight: 600;
+      font-size: 1.05rem;
+      padding: 0.5rem 1.6rem;
+      margin-top: 0.5rem;
+      box-shadow: 0 2px 8px 0 rgba(127,83,172,0.13);
+      transition: background 0.2s;
+    }
+    .contact-btn:hover {
+      background: linear-gradient(90deg, #7f53ac 0%, #a259f7 100%);
+      color: #fff;
+    }
+    .contact-map iframe {
+      border-radius: 1.3rem;
+      box-shadow: 0 2px 16px 0 rgba(80,80,180,0.10);
+    }
+    @media (max-width: 991px) {
+      .contact-card, .contact-map iframe { border-radius: 1rem; }
+      .contact-map { margin-top: 1.5rem; }
+    }
+    
+    @media (max-width: 767px) {
+      .contact-card {
+        padding: 1.5rem !important;
+      }
+      
+      .contact-input {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+      }
+      
+      .contact-btn {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+        width: 100%;
+      }
+      
+      .contact-map {
+        margin-top: 1rem;
+      }
+      
+      .contact-map iframe {
+        height: 250px;
+      }
+    }
+    .footer-modern {
+      background: #181c2a;
+      color: #fff;
+      font-family: 'Poppins', Arial, sans-serif;
+      border-top: none;
+      margin-top: 0;
+    }
+    .footer-title {
+      font-family: 'Bebas Neue', 'Poppins', Arial, sans-serif;
+      font-size: 1.3rem;
+      color: #fff;
+      letter-spacing: 2px;
+    }
+    .footer-links a {
+      color: #bdbdf7;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: #a259f7;
+      text-decoration: underline;
+    }
+    .footer-social-icon {
+      font-size: 1.5rem;
+      margin-right: 1.1rem;
+      color: #fff;
+      transition: color 0.2s, text-shadow 0.2s;
+      text-shadow: 0 2px 8px #7f53ac33;
+    }
+    .footer-social-icon:hover {
+      color: #a259f7;
+      text-shadow: 0 4px 16px #a259f7aa;
+    }
+    .footer-copyright {
+      color: #bdbdf7;
+      font-size: 0.97rem;
+    }
+    @media (max-width: 767px) {
+      .footer-modern { 
+        text-align: center; 
+        padding: 1.5rem 1rem 1rem 1rem;
+      }
+      .footer-social { justify-content: center !important; }
+      .footer-links { 
+        justify-content: center !important; 
+        gap: 1rem !important;
+      }
+      
+      .footer-links a {
+        font-size: 0.9rem;
+      }
+      
+      .footer-copyright {
+        font-size: 0.85rem;
+        margin-top: 1rem;
+      }
+    }
+    #contact {
+      margin-bottom: 0 !important;
+      padding-bottom: 0.5rem !important;
+    }
+    .footer-modern {
+      margin-top: 0 !important;
+    }
+    section {
+      scroll-margin-top: 70px;
+      min-height: 400px; /* Tambahkan ini untuk memastikan section cukup tinggi */
+    }
+    .navbar-nav .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -4px; height: 3px;
+      background: #B8043B;
+      border-radius: 2px;
+      opacity: 0;
+      transform: scaleX(0);
+      transition: all 0.3s cubic-bezier(.4,2,.6,1);
+    }
+    .navbar-nav .nav-link.active-scroll::after {
+      background: #8F83D9;
+      opacity: 1;
+      transform: scaleX(1);
+    }
+    /* Tambahan untuk menghilangkan horizontal scrollbar */
+    section, .container, .container-fluid, .row {
+      max-width: 100vw !important;
+      overflow-x: hidden !important;
+    }
+    
+    /* Mobile optimizations */
+    @media (max-width: 767px) {
+      body {
+        font-size: 14px;
+      }
+      
+      .container-fluid {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+      
+      .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      
+      .col-12, .col-md-6, .col-lg-4 {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+      }
+      
+      /* Ensure proper touch targets */
+      .btn, .nav-link, .accordion-button {
+        min-height: 44px;
+      }
+      
+      /* Improve text readability */
+      p, .news-card-desc, .about-desc {
+        line-height: 1.5;
+      }
+      
+      /* Fix text truncation - simple solution */
+      .news-card-desc, .about-desc, .hero-desc {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+      
+      /* Fix carousel caption */
+      .carousel-caption-bg {
+        max-width: 95vw !important;
+        margin: 0 0 1rem 0.5rem !important;
+        padding: 0.8rem !important;
+      }
+      
+      /* Fix carousel item responsiveness */
+      .carousel-item {
+        height: 100% !important;
+        min-height: 300px !important;
+        position: relative !important;
+      }
+      
+      .carousel-item-bg {
+        height: 100% !important;
+        min-height: 300px !important;
+        object-fit: cover !important;
+        position: relative !important;
+      }
+      
+      /* Ensure overlay covers entire carousel */
+      .hero-overlay {
+        width: 100% !important;
+        height: 100% !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        z-index: 2 !important;
+      }
+      
+      /* Ensure carousel container covers full area */
+      #heroCarousel, #heroCarousel .carousel-inner {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 300px !important;
+      }
+      
+      .carousel-item {
+        width: 100% !important;
+        height: 100% !important;
+      }
+      
+      /* Fix hero content positioning */
+      .hero-modern .hero-content {
+        padding: 1rem 0.5rem !important;
+        max-width: 100% !important;
+        left: 0.5rem !important;
+        right: 0.5rem !important;
+        bottom: 1rem !important;
+      }
+      
+      .hero-title {
+        font-size: 1rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0.5rem !important;
+      }
+      
+      .hero-desc {
+        font-size: 0.8rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 0.8rem !important;
+      }
+      
+      /* Fix carousel indicators for mobile */
+      .carousel-indicators {
+        right: 1rem !important;
+        bottom: 1rem !important;
+      }
+      
+      .carousel-indicators [data-bs-target] {
+        width: 24px !important;
+        height: 3px !important;
+      }
+      
+      /* Smaller fonts for mobile */
+      .news-card-title {
+        font-size: 1rem !important;
+      }
+      
+      .news-card-desc {
+        font-size: 0.85rem !important;
+      }
+      
+      /* Fix populer card text truncation for mobile */
+      .populer-main-card-desc {
+        font-size: 0.8rem !important;
+        line-height: 1.4 !important;
+        -webkit-line-clamp: 2 !important;
+        display: -webkit-box !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+      }
+      
+      .populer-side-card-title {
+        font-size: 0.85rem !important;
+        line-height: 1.2 !important;
+        -webkit-line-clamp: 2 !important;
+        display: -webkit-box !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+      }
+    }
+    /* Prevent horizontal scroll - simple fix */
+    html, body {
+      overflow-x: hidden !important;
+    }
+    
+    /* Opsional: sembunyikan scrollbar horizontal di Webkit */
+    ::-webkit-scrollbar {
+      height: 0 !important;
+    }
+    /* Custom scrollbar horizontal untuk kategori berita */
+    #kategori-buttons {
+      scrollbar-color: #7f53ac #23284a;
+      scrollbar-width: thin;
+    }
+    #kategori-buttons::-webkit-scrollbar {
+      height: 8px;
+      background: #23284a;
+    }
+    #kategori-buttons::-webkit-scrollbar-thumb {
+      background: linear-gradient(90deg, #7f53ac 0%, #a259f7 100%);
+      border-radius: 4px;
+    }
+    #kategori-buttons::-webkit-scrollbar-track {
+      background: #23284a;
+      border-radius: 4px;
+    }
+    /* Hamburger menu putih untuk navbar di mobile */
+    .navbar-toggler {
+      border-color: #fff !important;
+    }
+    .navbar-toggler .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+    /* Parallax background untuk Contact Us (kompatibel mobile & desktop) */
+    #section7 {
+      position: relative;
+      background: linear-gradient(120deg, #23284a 60%, #181c2a 100%);
+      overflow: hidden;
+    }
+    #section7-parallax-bg {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80') center center / cover no-repeat;
+      opacity: 0.22;
+      z-index: 0;
+      will-change: transform;
+      pointer-events: none;
+      transition: background-position 0.2s;
+    }
+    #section7 > .container-fluid, #section7 > .container {
+      position: relative;
+      z-index: 1;
+    }
+    /* Parallax klasik untuk Contact Us */
+    #section7.parallax {
+      background-image: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80');
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-blend-mode: overlay;
+      background-color: #23284a;
+    }
+    /* Carousel indicator rata kanan untuk browser lama (tanpa flexbox) */
+    .carousel-indicators {
+      position: absolute !important;
+      right: 2.2rem !important;
+      bottom: 2.2rem !important;
+      left: auto !important;
+      margin: 0 !important;
+      text-align: right !important;
+      width: auto !important;
+      display: block !important;
+      background: none !important;
+      z-index: 10;
+    }
+    .carousel-indicators [data-bs-target] {
+      display: inline-block !important;
+      float: none !important;
+    }
+    .carousel-indicators [data-bs-target] {
+      width: 32px;
+      height: 4px;
+      border-radius: 2px;
+      background: #fff4;
+      opacity: 1;
+      transition: background 0.2s;
+      border: none;
+    }
+    .carousel-indicators .active {
+      background: linear-gradient(90deg, #a259f7 0%, #7f53ac 100%);
+      box-shadow: 0 2px 8px 0 rgba(127,83,172,0.18);
+    }
+    /* Pagination kompatibel browser lama */
+    .pagination {
+      display: block !important;
+      text-align: center !important;
+      padding: 0;
+      margin: 0 auto;
+      float: none !important;
+    }
+    .pagination .page-item {
+      display: inline-block !important;
+      margin: 0 2px;
+      float: none !important;
+    }
+    .pagination .page-link {
+      display: table-cell !important;
+      vertical-align: middle !important;
+      text-align: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50% !important;
+      font-size: 1.1rem;
+      padding: 0;
+      border: 2px solid #a259f7 !important;
+      color: #fff !important;
+      background: #23284a !important;
+    }
+    .pagination .page-item {
+      display: inline-block !important;
+      vertical-align: middle;
+    }
+    .pagination {
+      text-align: center !important;
+      padding: 0;
+      margin: 0 auto;
+      float: none !important;
+      display: block !important;
+    }
+    .pagination .page-item.active .page-link {
+      background: #a259f7 !important;
+      color: #fff !important;
+      border: 2px solid #a259f7 !important;
+    }
+    .pagination .page-link:focus, .pagination .page-link:hover {
+      background: #7f53ac !important;
+      color: #fff !important;
+      border: 2px solid #a259f7 !important;
+    }
+    .pagination .page-item.disabled .page-link {
+      background: #23284a !important;
+      color: #bdbdf7 !important;
+      opacity: 0.6;
+      border: 2px solid #23284a !important;
+    }
+    .pagination .page-link i {
+      font-size: 1.1em;
+      vertical-align: middle;
+      line-height: 1;
+      display: inline;
+      margin: 0;
+    }
+    
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #7f53ac 0%, #647dee 100%);
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px) scale(0.8);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 4px 20px rgba(127, 83, 172, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+    
+    .back-to-top:hover {
+      background: linear-gradient(135deg, #a259f7 0%, #7f53ac 100%);
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 30px rgba(162, 89, 247, 0.4);
+      color: #fff;
+    }
+    
+    .back-to-top:active {
+      transform: translateY(-2px) scale(1.05);
+    }
+    
+    .back-to-top::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(135deg, #a259f7, #7f53ac, #647dee);
+      border-radius: 50%;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .back-to-top:hover::before {
+      opacity: 1;
+    }
+    
+    .back-to-top i {
+      transition: transform 0.3s ease;
+    }
+    
+    .back-to-top:hover i {
+      transform: translateY(-2px);
+    }
+    
+    /* Efek ripple sederhana tanpa appendChild */
+    .back-to-top:active {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 12px 40px rgba(162, 89, 247, 0.5);
+    }
+    
+    .back-to-top:active i {
+      transform: translateY(-4px) scale(1.1);
+    }
+    
+    /* Responsive untuk mobile */
+    @media (max-width: 768px) {
+      .back-to-top {
+        bottom: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .back-to-top {
+        bottom: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .about-img-grid img:last-child {
+        grid-column: 1 / span 3 !important;
+        height: 200px !important;
+        object-fit: cover !important;
+
+      }
+    }
+    @media (max-width: 767px) {
+      .about-img-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-rows: repeat(3, 120px) !important;
+        gap: 0.5rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .about-img-grid img {
+        border-radius: 0.7rem !important;
+        object-fit: cover !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+    @media (max-width: 767px) {
+      .about-img-grid img:last-child {
+        grid-column: 1 / span 2 !important;
+        height: 120px !important;
+        object-fit: cover !important;
+      }
+    }
+  </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#main-navbar" data-bs-offset="70" tabindex="0">
+  <!-- NAVBAR MODERN -->
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top shadow-sm" id="main-navbar">
+    <span class="navbar-brand d-flex align-items-center" style="cursor: default; pointer-events: none;">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/rocket.png" alt="Logo" width="32" class="me-2">
+      SPACE NEWS
+    </span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+        <li class="nav-item"><a class="nav-link" href="#section1">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section2">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section3">Berita</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section4">Kategori</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section5">Populer</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section6">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="#section7">Kontak</a></li>
+      </ul>
+      <button class="btn btn-gradient ms-lg-3 mt-2 mt-lg-0 d-block d-lg-inline-block" type="button">Work With Us</button>
+    </div>
+  </nav>
+
+  <!-- HERO MODERN -->
+    <section class="hero-modern position-relative p-0" id="section1" data-aos="fade-up">
+      <div id="heroCarousel" class="carousel slide carousel-fade w-100 h-100" data-bs-ride="carousel">
+        <div class="carousel-inner" id="hero-carousel-inner">
+          <!-- Slide berita akan dimuat di sini -->
+        </div>
+        <div class="carousel-indicators position-absolute" id="hero-carousel-indicators" style="bottom: 2.2rem; right: 2.2rem; z-index: 10;"></div>
+      </div>
+    </section>
+
+  <!-- ABOUT US -->
+  <section class="about-modern about-fullwidth section-bg position-relative" id="section2" data-aos="fade-right">
+    <div class="row align-items-start g-4 m-0 w-100 flex-wrap" style="width:100%;margin-right:0;margin-left:0;max-width:100%;min-width:0;">
+      <div class="col-lg-5 col-md-6 mb-4 mb-lg-0 d-flex flex-column justify-content-center ps-4 ps-md-5" style="min-width:0;max-width:520px;">
+        <div class="d-flex align-items-center mb-2">
+          <span class="me-3" style="display:inline-block;width:14px;height:14px;background:#7f53ac;border-radius:3px;"></span>
+          <h2 class="about-title heading-alpha mb-0" style="font-size:2.5rem;letter-spacing:2px;">ABOUT US</h2>
+        </div>
+        <div class="about-desc" style="font-size:1rem;color:#e0e0ff;max-width:420px;line-height:1.6;">
+          Space News adalah portal berita yang menyajikan informasi terkini di Indonesia dengan nuansa luar angkasa. Kami berkomitmen memberikan berita yang akurat, menarik, dan inspiratif bagi para pembaca di seluruh nusantara.
+        </div>
+      </div>
+      <div class="col-lg-7 col-md-6 d-flex align-items-center pe-0" style="flex:1;min-width:0;max-width:100%;">
+        <div class="about-img-grid d-grid gap-3 w-100" style="grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,180px);height:auto;width:100%;max-width:100%;min-width:0;">
+          <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80" class="rounded-3 w-100 h-100 object-fit-cover" alt="about1">
+          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80" class="rounded-3 w-100 h-100 object-fit-cover" alt="about2">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" class="rounded-3 w-100 h-100 object-fit-cover" alt="about3">
+          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" class="rounded-3 w-100 h-100 object-fit-cover" alt="about4" style="grid-column:1/3;grid-row:2/3;">
+          <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=600&q=80" class="rounded-3 w-100 h-100 object-fit-cover" alt="about5">
+          <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" class="rounded-3 w-100 h-100 object-fit-cover" alt="about6">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION BERITA TERBARU -->
+  <section class="news-modern section-bg-alt py-5 position-relative" id="section3" data-aos="fade-up">
+    <div class="container-fluid px-4 px-md-5">
+      <div class="d-flex align-items-center mb-3">
+        <span class="me-3" style="display:inline-block;width:14px;height:14px;background:#7f53ac;border-radius:3px;"></span>
+        <h2 class="news-title heading-alpha mb-0" style="font-size:2.1rem;letter-spacing:2px;">BERITA TERBARU</h2>
+      </div>
+      <div id="berita-list" class="row gy-4 gx-3">
+        <!-- Berita dari API akan dimuat di sini -->
+      </div>
+      <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center" id="pagination-berita">
+          <!-- Pagination akan dimuat di sini -->
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <!-- SECTION KATEGORI BERITA -->
+  <section class="kategori-modern section-bg py-5 position-relative" id="section4" data-aos="fade-left">
+    <div class="container-fluid px-4 px-md-5">
+      <div class="d-flex align-items-center mb-3">
+        <span class="me-3" style="display:inline-block;width:14px;height:14px;background:#7f53ac;border-radius:3px;"></span>
+        <h2 class="kategori-title heading-alpha mb-0" style="font-size:2.1rem;letter-spacing:2px;">KATEGORI BERITA</h2>
+      </div>
+      <div id="kategori-buttons" class="mb-4 d-flex flex-nowrap gap-2 overflow-auto pb-2" style="scrollbar-width:thin;">
+        <button class="btn kategori-pill" data-kategori="politik">Politik</button>
+        <button class="btn kategori-pill" data-kategori="olahraga">Olahraga</button>
+        <button class="btn kategori-pill" data-kategori="pendidikan">Pendidikan</button>
+        <button class="btn kategori-pill" data-kategori="umum">Umum</button>
+        <button class="btn kategori-pill" data-kategori="teknologi">Teknologi</button>
+        <button class="btn kategori-pill" data-kategori="ekonomi">Ekonomi</button>
+        <button class="btn kategori-pill" data-kategori="hiburan">Hiburan</button>
+        <button class="btn kategori-pill" data-kategori="sains">Sains</button>
+      </div>
+      <div id="kategori-list" class="row gy-4 gx-3">
+        <!-- Kategori berita akan dimuat di sini -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION ARTIKEL POPULER -->
+  <section class="section-bg-alt py-5" id="section5" data-aos="zoom-in">
+    <div class="container-fluid px-4 px-md-5">
+      <div class="d-flex align-items-center mb-3">
+        <span class="me-3" style="display:inline-block;width:14px;height:14px;background:#7f53ac;border-radius:3px;"></span>
+        <h2 class="news-title heading-alpha mb-0" style="font-size:2.1rem;letter-spacing:2px;">ARTIKEL POPULER</h2>
+      </div>
+      <div id="populer-list" class="populer-grid-utama row gx-4 gy-3 align-items-stretch">
+        <!-- Artikel populer akan dimuat di sini -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-bg py-5" id="section6" data-aos="fade-up">
+    <div class="container-fluid px-4 px-md-5">
+      <div class="faq-header text-center mb-4">
+        <div class="d-flex align-items-center justify-content-center mb-2">
+          <div class="faq-line me-3"></div>
+          <div class="faq-icon-main"><i class="bi bi-question-circle-fill"></i></div>
+          <div class="faq-line ms-3"></div>
+        </div>
+        <h2 class="faq-title heading-alpha mb-0">FAQ</h2>
+      </div>
+      <div class="accordion modern-faq" id="faqAccordion">
+        <div class="accordion-item faq-item mb-3">
+          <h2 class="accordion-header" id="faq1">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+              <span class="faq-q-icon"><i class="bi bi-rocket-takeoff-fill"></i></span> Apa itu Space News?
+            </button>
+          </h2>
+          <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              SpaceNews adalah portal berita yang menyajikan informasi terkini seputar dunia antariksa, astronomi, dan teknologi luar angkasa.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item faq-item mb-3">
+          <h2 class="accordion-header" id="faq2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+              <span class="faq-q-icon"><i class="bi bi-envelope-paper-fill"></i></span> Bagaimana cara menghubungi Space News?
+            </button>
+          </h2>
+          <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Anda dapat menghubungi admin melalui form pada bagian Contact Us.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item faq-item mb-3">
+          <h2 class="accordion-header" id="faq3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+              <span class="faq-q-icon"><i class="bi bi-stars"></i></span> Apakah berita di Space News selalu update?
+            </button>
+          </h2>
+          <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Berita diambil dari berbagai sumber terpercaya dan API berita luar angkasa, dan selalu diupdate secara berkala.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item faq-item mb-3">
+          <h2 class="accordion-header" id="faq4">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+              <span class="faq-q-icon"><i class="bi bi-universal-access-circle"></i></span> Apakah Space News gratis diakses?
+            </button>
+          </h2>
+          <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Ya, SpaceNews dapat diakses secara gratis oleh siapa saja.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item faq-item mb-3">
+          <h2 class="accordion-header" id="faq5">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+              <span class="faq-q-icon"><i class="bi bi-moon-stars-fill"></i></span> Bagaimana cara mencari berita tertentu di Space News?
+            </button>
+          </h2>
+          <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Anda dapat menggunakan fitur pencarian di bagian atas website untuk mencari berita tertentu.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT US -->
+  <section class="parallax section-bg-alt py-5 mb-0 slide-in-left" id="section7">
+    <div id="section7-parallax-bg"></div>
+    <div class="container-fluid px-4 px-md-5">
+      <div class="d-flex align-items-center mb-3">
+        <span class="me-3" style="display:inline-block;width:14px;height:14px;background:#7f53ac;border-radius:3px;"></span>
+        <h2 class="news-title heading-alpha mb-0" style="font-size:2.1rem;letter-spacing:2px;">CONTACT US</h2>
+      </div>
+      <div class="row g-4 align-items-stretch">
+        <div class="col-lg-6 mb-4">
+          <div class="contact-card p-4 h-100 d-flex flex-column justify-content-center">
+            <form>
+              <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" class="form-control contact-input" id="nama" required>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control contact-input" id="email" required>
+              </div>
+              <div class="mb-3">
+                <label for="pesan" class="form-label">Pesan</label>
+                <textarea class="form-control contact-input" id="pesan" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-gradient contact-btn">Kirim</button>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-6 d-flex align-items-center">
+          <div class="ratio ratio-16x9 w-100 contact-map">
+            <iframe src="https://www.google.com/maps?q=-3.2947976,114.5901193(Saya berada di sini)&hl=id&z=17&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer-modern mt-0 pt-4 pb-2">
+    <div class="container-fluid px-4 px-md-5">
+      <div class="row align-items-center gy-3">
+        <div class="col-md-6 mb-2 mb-md-0">
+          <div class="footer-logo mb-2 d-flex align-items-center">
+            <img src="https://img.icons8.com/ios-filled/32/ffffff/rocket.png" alt="Logo" width="28" class="me-2">
+            <span class="footer-title heading-alpha">SPACE NEWS</span>
+          </div>
+          <ul class="footer-links list-unstyled d-flex flex-wrap gap-3 mb-0">
+            <li><a href="#section1">Home</a></li>
+            <li><a href="#section2">About</a></li>
+            <li><a href="#section7">Contact</a></li>
+            <li><a href="#section3">Berita</a></li>
+            <li><a href="#section4">Kategori</a></li>
+            <li><a href="#section5">Populer</a></li>
+            <li><a href="#section6">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <div class="footer-social mb-2">
+            <a href="#" class="footer-social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="footer-social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="footer-social-icon"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="footer-social-icon"><i class="fab fa-youtube"></i></a>
+          </div>
+          <div class="footer-copyright text-md-end text-center">
+            <small>&copy; 2024 SpaceNews. All rights reserved.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" title="Kembali ke atas">
+    <i class="fas fa-rocket"></i>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init();
+    });
+    // Konfigurasi API
+    var API_URL = "https://api-berita-indonesia.vercel.app/cnn/terbaru/";
+    var BERITA_PER_PAGE = 10;
+    var beritaData = [];
+    var currentPage = 1;
+
+    // Fungsi untuk mengambil data berita dari API
+    function fetchBerita() {
+      var beritaList = document.getElementById("berita-list");
+      beritaList.innerHTML = '<div class="text-center w-100 py-5"><div class="spinner-border text-light" role="status"></div></div>';
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', API_URL, true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            try {
+              var data = JSON.parse(xhr.responseText);
+              if (data.success && data.data.posts) {
+                beritaData = data.data.posts;
+                currentPage = 1;
+                renderBerita();
+                renderPagination();
+              } else {
+                beritaList.innerHTML = "<p class='text-danger'>Gagal memuat berita.</p>";
+              }
+            } catch (e) {
+              beritaList.innerHTML = "<p class='text-danger'>Gagal parsing data dari server.</p>";
+            }
+          } else {
+            beritaList.innerHTML = "<p class='text-danger'>Gagal mengambil data dari server.</p>";
+          }
+        }
+      };
+      xhr.onerror = function() {
+        beritaList.innerHTML = "<p class='text-danger'>Gagal mengambil data dari server.</p>";
+      };
+      xhr.send();
+    }
+
+    // Fungsi untuk menampilkan berita pada halaman tertentu (modern card)
+    function renderBerita() {
+      var beritaList = document.getElementById("berita-list");
+      beritaList.innerHTML = "";
+      var start = (currentPage - 1) * BERITA_PER_PAGE;
+      var end = start + BERITA_PER_PAGE;
+      var beritaPage = beritaData.slice(start, end);
+      if (beritaPage.length === 0) {
+        beritaList.innerHTML = "<p class='text-danger'>Tidak ada berita untuk ditampilkan.</p>";
+        return;
+      }
+      var html = "";
+      for (var i = 0; i < beritaPage.length; i++) {
+        var news = beritaPage[i];
+        var articleDate = new Date(news.pubDate).toLocaleDateString("id-ID", {
+          weekday: "long", year: "numeric", month: "long", day: "numeric"
+        });
+        var imgUrl = news.enclosure || news.thumbnail;
+        if (imgUrl && imgUrl.indexOf('http') === 0 && imgUrl.indexOf('.webp', imgUrl.length - 5) !== -1) {
+          imgUrl = imgUrl.replace('.webp', '.jpg');
+        }
+        html +=
+          '<div class="col-12 col-md-6 col-lg-4">' +
+            '<div class="news-card h-100">' +
+              '<img src="' + imgUrl + '" class="news-card-img" alt="' + news.title + '">' +
+              '<div class="news-card-body">' +
+                '<div class="news-card-title">' + news.title + '</div>' +
+                '<div class="news-card-date">' + articleDate + '</div>' +
+                '<div class="news-card-desc">' + (news.description || '') + '</div>' +
+                '<a href="' + news.link + '" class="news-card-link mt-2" target="_blank">Baca Selengkapnya</a>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+      }
+      beritaList.innerHTML = html;
+    }
+
+    // Fungsi untuk menampilkan pagination
+    function renderPagination() {
+      var totalPages = Math.ceil(beritaData.length / BERITA_PER_PAGE);
+      var pagination = document.getElementById("pagination-berita");
+      pagination.innerHTML = "";
+      if (totalPages <= 1) return;
+      var html = '';
+      // Tombol prev
+      html += '<li class="page-item' + (currentPage === 1 ? ' disabled' : '') + '">' +
+        '<a class="page-link" href="#berita-terbaru" tabindex="-1" onclick="' + (currentPage === 1 ? '' : 'gotoPage(' + (currentPage - 1) + ');return false;') + '">' +
+          '<i class="fas fa-chevron-left"></i>' +
+        '</a>' +
+      '</li>';
+      // Nomor halaman
+      for (var i = 1; i <= totalPages; i++) {
+        html += '<li class="page-item' + (i === currentPage ? ' active' : '') + '"><a class="page-link" href="#berita-terbaru" onclick="gotoPage(' + i + ');return false;">' + i + '</a></li>';
+      }
+      // Tombol next
+      html += '<li class="page-item' + (currentPage === totalPages ? ' disabled' : '') + '">' +
+        '<a class="page-link" href="#berita-terbaru" onclick="' + (currentPage === totalPages ? '' : 'gotoPage(' + (currentPage + 1) + ');return false;') + '">' +
+          '<i class="fas fa-chevron-right"></i>' +
+        '</a>' +
+      '</li>';
+      pagination.className = 'pagination pagination-gradient justify-content-center';
+      pagination.innerHTML = html;
+    }
+
+    // Fungsi untuk pindah halaman
+    function gotoPage(page) {
+      currentPage = page;
+      renderBerita();
+      renderPagination();
+    }
+    window.gotoPage = gotoPage;
+
+    // Panggil fetchBerita saat halaman dimuat
+    document.addEventListener("DOMContentLoaded", fetchBerita);
+
+    // Mapping kategori umum ke sumber dan kategori API
+    var kategoriMapping = {
+      politik: { sumber: 'antara', kategori: 'politik' },
+      olahraga: { sumber: 'cnn', kategori: 'olahraga' },
+      pendidikan: { sumber: 'antara', kategori: 'humaniora' },
+      umum: { sumber: 'kumparan', kategori: 'terbaru' },
+      teknologi: { sumber: 'cnn', kategori: 'teknologi' },
+      ekonomi: { sumber: 'cnn', kategori: 'ekonomi' },
+      hiburan: { sumber: 'cnn', kategori: 'hiburan' },
+      sains: { sumber: 'antara', kategori: 'humaniora' }
+    };
+
+    function fetchKategoriUmum(kat) {
+      var kategoriList = document.getElementById('kategori-list');
+      kategoriList.innerHTML = '<div class="text-center w-100 py-5"><div class="spinner-border text-light" role="status"></div></div>';
+      var mapping = kategoriMapping[kat];
+      var sumber = mapping.sumber;
+      var kategori = mapping.kategori;
+      var url = 'https://api-berita-indonesia.vercel.app/' + sumber + '/' + kategori + '/';
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', url, true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            try {
+              var data = JSON.parse(xhr.responseText);
+              if (data.success && data.data.posts) {
+                kategoriList.innerHTML = '';
+                if (data.data.posts.length === 0) {
+                  kategoriList.innerHTML = "<p class='text-danger'>Tidak ada berita untuk kategori ini.</p>";
+                  return;
+                }
+                var posts = data.data.posts;
+                var html = "";
+                for (var j = 0; j < Math.min(posts.length, 10); j++) {
+                  var news = posts[j];
+                  var articleDate = new Date(news.pubDate).toLocaleDateString("id-ID", {
+                    weekday: "long", year: "numeric", month: "long", day: "numeric"
+                  });
+                  var imgUrl = news.enclosure || news.thumbnail;
+                  if (imgUrl && imgUrl.indexOf('http') === 0 && imgUrl.indexOf('.webp', imgUrl.length - 5) !== -1) {
+                    imgUrl = imgUrl.replace('.webp', '.jpg');
+                  }
+                  html +=
+                    '<div class="col-12 col-md-6 col-lg-4">' +
+                      '<div class="news-card h-100">' +
+                        '<img src="' + imgUrl + '" class="news-card-img" alt="' + news.title + '">' +
+                        '<div class="news-card-body">' +
+                          '<div class="news-card-title">' + news.title + '</div>' +
+                          '<div class="news-card-date">' + articleDate + '</div>' +
+                          '<div class="news-card-desc">' + (news.description || '') + '</div>' +
+                          '<a href="' + news.link + '" class="news-card-link mt-2" target="_blank">Baca Selengkapnya</a>' +
+                        '</div>' +
+                      '</div>' +
+                    '</div>';
+                }
+                kategoriList.innerHTML = html;
+              } else {
+                kategoriList.innerHTML = "<p class='text-danger'>Gagal memuat berita kategori.</p>";
+              }
+            } catch (e) {
+              kategoriList.innerHTML = "<p class='text-danger'>Gagal parsing data dari server.</p>";
+            }
+          } else {
+            kategoriList.innerHTML = "<p class='text-danger'>Gagal mengambil data dari server.</p>";
+          }
+        }
+      };
+      xhr.onerror = function() {
+        kategoriList.innerHTML = "<p class='text-danger'>Gagal mengambil data dari server.</p>";
+      };
+      xhr.send();
+    }
+
+    // Event listener tombol kategori
+    document.getElementById('kategori-buttons').addEventListener('click', function(e) {
+      if (e.target.tagName === 'BUTTON') {
+        // Highlight tombol aktif
+        var btns = this.children;
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].className = btns[i].className.replace(' active', '');
+        }
+        if (e.target.className.indexOf('active') === -1) {
+          e.target.className += ' active';
+        }
+        fetchKategoriUmum(e.target.getAttribute('data-kategori'));
+      }
+    });
+
+    // Tampilkan kategori "Politik" secara default saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', function() {
+      var btns = document.querySelectorAll('#kategori-buttons button[data-kategori="politik"]');
+      for (var i = 0; i < btns.length; i++) {
+        if (btns[i].className.indexOf('active') === -1) {
+          btns[i].className += ' active';
+        }
+      }
+      fetchKategoriUmum('politik');
+    });
+
+    // Fungsi untuk ambil dan tampilkan artikel populer
+    function fetchArtikelPopuler() {
+      var populerList = document.getElementById('populer-list');
+      populerList.innerHTML = '<div class="text-center w-100 py-5"><div class="spinner-border text-primary" role="status"></div></div>';
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://api-berita-indonesia.vercel.app/cnbc/terbaru/', true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            try {
+              var data = JSON.parse(xhr.responseText);
+              if (data.success && data.data.posts) {
+                var main = data.data.posts[0];
+                var mainImg = main.enclosure || main.thumbnail;
+                if (mainImg && mainImg.indexOf('http') === 0 && mainImg.indexOf('.webp', mainImg.length - 5) !== -1) {
+                  mainImg = mainImg.replace('.webp', '.jpg');
+                }
+                var html = '';
+                html += '<div class="populer-main-col">' +
+                  '<div class="populer-main-card h-100">' +
+                    '<img src="' + mainImg + '" class="populer-main-card-img" alt="' + main.title + '">' +
+                    '<div class="populer-main-card-body">' +
+                      '<div class="populer-main-card-title">' + main.title + '</div>' +
+                      '<div class="populer-main-card-date">' + new Date(main.pubDate).toLocaleDateString('id-ID', {weekday:'long', year:'numeric', month:'long', day:'numeric'}) + '</div>' +
+                      '<div class="populer-main-card-desc">' + (main.description || '') + '</div>' +
+                      '<a href="' + main.link + '" class="news-card-link mt-2" target="_blank">Baca Selengkapnya</a>' +
+                    '</div>' +
+                  '</div>' +
+                '</div>';
+                html += '<div class="populer-side-col">';
+                for (var k = 1; k < Math.min(data.data.posts.length, 5); k++) {
+                  var news = data.data.posts[k];
+                  var imgUrl = news.enclosure || news.thumbnail;
+                  if (imgUrl && imgUrl.indexOf('http') === 0 && imgUrl.indexOf('.webp', imgUrl.length - 5) !== -1) {
+                    imgUrl = imgUrl.replace('.webp', '.jpg');
+                  }
+                  html +=
+                    '<div class="populer-side-card">' +
+                      '<img src="' + imgUrl + '" class="populer-side-card-img" alt="' + news.title + '">' +
+                      '<div class="populer-side-card-body">' +
+                      '<div class="populer-side-card-title">' + news.title + '</div>' +
+                      '<div class="populer-side-card-date">' + new Date(news.pubDate).toLocaleDateString('id-ID', {weekday:'long', year:'numeric', month:'long', day:'numeric'}) + '</div>' +
+                      '<a href="' + news.link + '" class="news-card-link mt-2" target="_blank">Baca Selengkapnya</a>' +
+                      '</div>' +
+                    '</div>';
+                }
+                html += '</div>';
+                populerList.innerHTML = html;
+              } else {
+                populerList.innerHTML = "<p class='text-danger'>Gagal memuat artikel populer.</p>";
+              }
+            } catch (e) {
+              populerList.innerHTML = "<p class='text-danger'>Gagal parsing data dari server.</p>";
+            }
+          } else {
+            populerList.innerHTML = "<p class='text-danger'>Gagal mengambil data dari server.</p>";
+          }
+        }
+      };
+      xhr.onerror = function() {
+        populerList.innerHTML = "<p class='text-danger'>Gagal mengambil data dari server.</p>";
+      };
+      xhr.send();
+    }
+    document.addEventListener('DOMContentLoaded', fetchArtikelPopuler);
+
+    // HERO: Carousel 3 berita terbaru
+    function fetchHeroCarousel() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://api-berita-indonesia.vercel.app/cnn/terbaru/', true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            try {
+              var data = JSON.parse(xhr.responseText);
+              if (data.success && data.data.posts && data.data.posts.length > 0) {
+                var berita = [];
+                for (var i = 0; i < 3 && i < data.data.posts.length; i++) {
+                  berita.push(data.data.posts[i]);
+                }
+                var inner = document.getElementById('hero-carousel-inner');
+                var indicators = document.getElementById('hero-carousel-indicators');
+                var innerHTML = '';
+                var indicatorsHTML = '';
+                for (var i = 0; i < berita.length; i++) {
+                  var news = berita[i];
+                  var imgUrl = news.enclosure || news.thumbnail;
+                  if (imgUrl && imgUrl.indexOf('http') === 0 && imgUrl.indexOf('.webp', imgUrl.length - 5) !== -1) {
+                    imgUrl = imgUrl.replace('.webp', '.jpg');
+                  }
+                  innerHTML +=
+                    '<div class="carousel-item' + (i === 0 ? ' active' : '') + ' position-relative w-100 h-100">' +
+                      '<img src="' + imgUrl + '" class="hero-bg-img" alt="' + news.title + '">' +
+                      '<div class="hero-overlay"></div>' +
+                      '<div class="hero-content">' +
+                        '<div class="hero-title heading-alpha">' + news.title + '</div>' +
+                        '<div class="hero-desc">' + (news.description || '') + '</div>' +
+                        '<div class="d-flex align-items-center mt-2">' +
+                          '<a href="' + news.link + '" class="btn btn-gradient" target="_blank">Baca Berita</a>' +
+                          '<a href="#about" class="btn btn-outline-light ms-2">About</a>' +
+                        '</div>' +
+                      '</div>' +
+                    '</div>';
+                  indicatorsHTML += '<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="' + i + '" class="' + (i === 0 ? 'active' : '') + '" aria-current="' + (i === 0 ? 'true' : 'false') + '" aria-label="Slide ' + (i+1) + '"></button>';
+                }
+                inner.innerHTML = innerHTML;
+                indicators.innerHTML = indicatorsHTML;
+              }
+            } catch (e) {
+              // Tidak perlu tampilkan error parsing di carousel
+            }
+          }
+        }
+      };
+      xhr.onerror = function() {
+        // Tidak perlu tampilkan error di carousel
+      };
+      xhr.send();
+    }
+    document.addEventListener('DOMContentLoaded', fetchHeroCarousel);
+
+    // NAVBAR: Floating effect saat scroll
+    window.addEventListener('scroll', function() {
+      var navbar = document.getElementById('main-navbar');
+      if (window.scrollY > (window.innerHeight * 0.7) - 60) {
+        if (navbar.className.indexOf('floating') === -1) {
+          navbar.className += ' floating';
+        }
+      } else {
+        navbar.className = navbar.className.replace(' floating', '');
+      }
+    });
+
+    // SCROLLSPY MANUAL
+    document.addEventListener("DOMContentLoaded", function () {
+      var sections = document.querySelectorAll("section[id]");
+      var navlinks = document.querySelectorAll('.navbar-nav .nav-link');
+      function activateNavLink() {
+        var currentSection = "";
+        var currentSectionElement = null;
+        var maxVisible = 0;
+        for (var i = 0; i < sections.length; i++) {
+          var section = sections[i];
+          var rect = section.getBoundingClientRect();
+          var visible = Math.max(0, Math.min(window.innerHeight, rect.bottom) - Math.max(80, rect.top));
+          if (visible > maxVisible) {
+            maxVisible = visible;
+            currentSection = section.getAttribute("id");
+            currentSectionElement = section;
+          }
+        }
+        for (var j = 0; j < navlinks.length; j++) {
+          var link = navlinks[j];
+          link.className = link.className.replace("active-scroll", "");
+          if (link.getAttribute("href").substring(1) === currentSection) {
+            if (link.className.indexOf('active-scroll') === -1) {
+              link.className += " active-scroll";
+            }
+          }
+        }
+      }
+      window.addEventListener("scroll", activateNavLink);
+      activateNavLink();
+    });
+
+    // Tambahkan class .open pada accordion-item saat terbuka (untuk efek glow)
+    document.addEventListener('DOMContentLoaded', function() {
+      function updateOpenAccordion() {
+        document.querySelectorAll('.accordion-item').forEach(function(item) {
+          item.classList.remove('open');
+        });
+        document.querySelectorAll('.accordion-collapse').forEach(function(collapse) {
+          if (collapse.classList.contains('show')) {
+            collapse.closest('.accordion-item').classList.add('open');
+          }
+        });
+      }
+      // Update saat klik tombol
+      document.querySelectorAll('.accordion-button').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          setTimeout(updateOpenAccordion, 50);
+        });
+      });
+      // Update saat halaman dimuat
+      setTimeout(updateOpenAccordion, 100);
+    });
+
+    document.addEventListener('scroll', function() {
+      var bg = document.getElementById('section7-parallax-bg');
+      var section = document.getElementById('section7');
+      if (!bg || !section) return;
+      var rect = section.getBoundingClientRect();
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      var offset = section.offsetTop;
+      var speed = 0.4;
+      var yPos = ((scrollTop + rect.top - offset) * speed);
+      bg.style.backgroundPosition = 'center ' + yPos + 'px';
+    });
+
+    // Back to Top Button Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      var backToTopBtn = document.getElementById('backToTop');
+      
+      // Tampilkan tombol saat scroll lebih dari 300px
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+          backToTopBtn.classList.add('show');
+        } else {
+          backToTopBtn.classList.remove('show');
+        }
+      });
+      
+      // Scroll ke atas saat tombol diklik
+      backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
